@@ -81,7 +81,7 @@ public class KfsContactLogList extends VerticalLayout implements KfsRefresh {
     public void newClick(Button.ClickEvent event) {
         KfsContactLog ne = new KfsContactLog();
         if (editDlg != null) {
-            editDlg.show("", ne, this);
+            editDlg.show(ne, this);
         }
     }
 

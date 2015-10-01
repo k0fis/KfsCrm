@@ -1,6 +1,5 @@
 package kfs.kfscrm.service;
 
-import java.util.Collection;
 import java.util.List;
 import kfs.kfscrm.api.CrmContactLockService;
 import kfs.kfscrm.api.CrmNoContactLockService;
@@ -14,8 +13,6 @@ import kfs.kfscrm.domain.*;
  */
 public interface CrmService {
 
-    <T extends KfsCrmDetail> void registerContactDetail(Class<T> cls, KfsCrmDetailLoader<T> loader);
-    
     KfsContact contactCreate (String mail, String phone, String user);
     void contactSave (KfsContact contact, String usr);
     void contactAddMail (KfsContact contact, String mail, boolean useAsLast, String user);

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import kfs.kfscrm.api.*;
 import kfs.kfscrm.dao.*;
 import kfs.kfscrm.domain.*;
@@ -35,17 +36,8 @@ public class CrmServiceImpl implements CrmService {
     private CrmContactLockService lockContact;
     @Autowired
     private CrmNoContactLockService lockNocontact;
-    
-    private final Map<Class, KfsCrmDetailLoader> loaders = new HashMap<>();
 
-    
-    @Override
-    public <T extends KfsCrmDetail> void registerContactDetail(Class<T> cls,
-            KfsCrmDetailLoader<T> loader) {
-        if (loader != null) {
-            loaders.put(cls, loader);
-        }
-    }
+
 
     Timestamp now() {
         return new Timestamp(new Date().getTime());
@@ -213,10 +205,12 @@ public class CrmServiceImpl implements CrmService {
 
     @Override
     public KfsContact contactFindByMail(String mail, String user) {
+        Logger.getLogger(getClass().getName()).info("contactFindByMail begin " + mail);
         KfsContact cont = contactDao.findByMail(mail);
         if (cont == null) {
             cont = contactCreate(mail, "", user);
         }
+        Logger.getLogger(getClass().getName()).info("contactFindByMail done");
         return cont;
     }
 

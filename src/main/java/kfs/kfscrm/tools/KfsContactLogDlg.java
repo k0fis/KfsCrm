@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import kfs.kfscrm.domain.KfsContactLog;
 import kfs.kfscrm.service.CrmService;
+import kfs.kfsvaalib.fields.KfsEditorField;
 import kfs.kfsvaalib.kfsForm.MFieldGroup;
 import kfs.kfsvaalib.listener.KfsButtonClickListener;
 import kfs.kfsvaalib.utils.KfsI18n;
@@ -18,7 +19,7 @@ import kfs.kfsvaalib.utils.KfsRefresh;
  *
  * @author pavedrim
  */
-public class KfsContactLogDlg extends Window {
+public class KfsContactLogDlg extends Window implements KfsEditorField.Editor<KfsContactLog>{
 
     private final UI ui;
     private final KfsI18n i18n;
@@ -75,11 +76,22 @@ public class KfsContactLogDlg extends Window {
         }
     }
 
-    public void show(String text, KfsContactLog contact, KfsRefresh refresh) {
-        this.contactLog = contact;
+    @Override
+    public void show(KfsContactLog contactLog, KfsRefresh refresh) {
+        this.contactLog = contactLog;
         this.refresh = refresh;
-        fg.setItems(contact);
+        fg.setItems(contactLog);
         ui.addWindow(this);
+    }
+
+    @Override
+    public KfsContactLog getKfsValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getKfsInfo(KfsContactLog data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
